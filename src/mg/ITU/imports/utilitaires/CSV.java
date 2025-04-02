@@ -14,7 +14,7 @@ import com.opencsv.exceptions.CsvValidationException;
 public class CSV {
     
 
-    public static <T> HashMap <String, List <Object>> import_CSV (String pathFile, Mapper_ligne<T> mapper_ligne) {
+    public static <T> HashMap <String, List <Object>> import_CSV (String pathFile, ImportExport_CSV<T> importExport_CSV) {
         
         HashMap <String, List <Object>> valiny = new HashMap <String, List <Object>> ();
         List <T> items = new ArrayList <> ();
@@ -29,7 +29,7 @@ public class CSV {
 
             while ((ligne = csvReader.readNext()) != null) {
                 try {
-                    T item = mapper_ligne.mapLigne(ligne, num_ligne);
+                    T item = importExport_CSV.Import (ligne, num_ligne);
                     items.add(item);
                 } catch (Exception e) {
                     errors.add("Error a la ligne "+num_ligne+", exception :"+e.getMessage()+", cause: "+e.getCause());
@@ -47,7 +47,7 @@ public class CSV {
     }
 
 
-    public static <T> File export_CSV (String pathFile, Mapper_ligne<T> mapper_ligne, List <T> objets) {
+    public static <T> File export_CSV (String pathFile, ImportExport_CSV<T> importExport_CSV, List <T> objets) {
 
         File fichier = new File(pathFile);
         FileWriter writer = null;
@@ -58,7 +58,7 @@ public class CSV {
             }
 
             writer = new FileWriter(fichier);
-            List <String> lignes = mapper_ligne.export (objets);
+            List <String> lignes = importExport_CSV.Export (objets);
 
             if (lignes == null || lignes.isEmpty()) {
                 writer.close();
