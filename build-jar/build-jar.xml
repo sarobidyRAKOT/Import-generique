@@ -4,14 +4,11 @@
 
 
     <!-- PROPERTY -->
-    <property name="jar-name" value="generic-IMPORT.jar"/>
+    <property name="jar-name" value="ImportExport-generic.jar"/>
     <property name="build.dir" value="${basedir}/build"/>
     <property name="dist.dir" value="${basedir}/dist"/>
     <property name="src.java.dir" value="${basedir}/src"/>
     <property name="lib.dir" value="${basedir}/lib"/>
-    <!-- <property name="dest-jarFile" value="D:/STADY/IT University/Semestre 6/Frame work/DAO/test/lib"/> -->
-    <!-- <property name="dest-jarFile" value="D:/STADY/IT University/Semestre 6/Frame work/POC/Ticketing/lib"/> -->
-    <!-- <property name="dest-jarFile-sprint" value="D:/STADY/IT University/Semestre 6/Frame work/SPRINT/sprint/lib"/>  -->
     
     <path id="classpath" >
         <fileset dir="${lib.dir}" >
@@ -59,9 +56,6 @@
         <jar basedir="${build.dir}" destfile="${dist.dir}/${jar-name}"/>
         <echo>End Build EJB JAR</echo>
 
-        <!-- COPIE FICHIER JAR DANS UN PROJET QUI L'UTILISE -->
-        <!-- <copy todir="${dest-jarFile}"><fileset dir="${dist.dir}"/></copy> -->
-        <!-- <copy todir="${dest-jarFile-sprint}"><fileset dir="${dist.dir}"/></copy> -->
     </target>
 
     
